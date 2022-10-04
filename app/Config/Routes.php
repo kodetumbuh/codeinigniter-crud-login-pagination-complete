@@ -43,6 +43,17 @@ $routes->get('/admin', 'Admin::index');
 $routes->get('/admin/github', 'Admin::github');
 $routes->get('/admin/tentang', 'Admin::tentang');
 $routes->get('ajax-load-data', 'Admin::ajaxLoadData');
+$routes->post('/admin/post', 'Admin::adminPost');
+$routes->get('/admin/create-user', 'Admin::adminPagePost');
+$routes->get('/admin/edit-user', 'Admin::adminPageEdit');
+$routes->get('/admin/edit/(:num)', 'Admin::getEdit/$1');
+$routes->post('/admin/update/(:num)', 'Admin::adminUpdate/$1');
+$routes->get('/admin/getcategory', 'Admin::getCategory');
+
+
+
+$routes->get('/admin/delete/(:num)', 'Admin::adminDelete/$1');
+
 
 
 

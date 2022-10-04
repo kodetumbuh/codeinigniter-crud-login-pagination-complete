@@ -6,6 +6,6 @@
 	<title>Crud PHP</title>
 	<link rel="stylesheet" href="<?php echo base_url('css/bootstrap.css'); ?>">
 	<link rel="stylesheet" href="<?php echo base_url('css/jquery.dataTables.min.css'); ?>">
-
+	<link rel="stylesheet" href="<?php echo base_url('css/all.min.css'); ?>">
 </head>
 <body>

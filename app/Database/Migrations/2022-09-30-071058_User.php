@@ -37,7 +37,7 @@ class User extends Migration
 
 		$this->forge->addKey('id', TRUE);
 
-		$this->forge->addForeignKey('name_level_user_id', 'level_users', 'id');
+		$this->forge->addForeignKey('name_level_user_id', 'level_users', 'id', 'SET NULL', 'SET NULL');
 		$this->forge->createTable('user');
 	}
 
