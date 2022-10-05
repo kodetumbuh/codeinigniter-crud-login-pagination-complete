@@ -33,16 +33,15 @@ class Admin extends BaseController
         return view('admin/tentang');
     }
 
-// ada masalah ketika menggunakan datatable disni tidak bisa menggunakan table yang mempunyai relasi
+
     public function ajaxLoadData()
     {
-
         $db = db_connect();
         $builder = $db->table('user')
         ->select('id_number ,username, email, level.name_level_user')
         ->join('level', 'user.name_level_user_id = level.id','left');
 
-// alternatif ajax edit
+    // alternatif ajax edit
         return DataTable::of($builder)
         ->edit('id_number', function($row){
             return '
@@ -51,14 +50,6 @@ class Admin extends BaseController
             ';
         })
         ->toJson(true);
-
-
-// berguna untuk ajax edit
-        // return DataTable::of($builder)
-        // ->add('action', function($row){
-        //     return '<button type="button" class="btn btn-success btn-sm" onclick="alert(\'Nama Email: '.$row->email.'\')">Edit</button> <button type="button" class="btn btn-danger btn-sm">Delete</button>';
-        // })
-        // ->toJson(true);
     }
 
 
@@ -106,11 +97,6 @@ class Admin extends BaseController
         return $this->response->redirect(site_url('/admin'));
     }
     
-
-    public function adminPageEdit()
-    {
-        return view('/admin/edit_user',);
-    }
 
     public function getEdit($id_number)
     {

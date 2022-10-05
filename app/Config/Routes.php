@@ -42,16 +42,11 @@ $routes->get('/', 'Home::index');
 $routes->get('/admin', 'Admin::index');
 $routes->get('/admin/github', 'Admin::github');
 $routes->get('/admin/tentang', 'Admin::tentang');
-$routes->get('ajax-load-data', 'Admin::ajaxLoadData');
+$routes->get('/admin/ajax-load-data', 'Admin::ajaxLoadData');
 $routes->post('/admin/post', 'Admin::adminPost');
 $routes->get('/admin/create-user', 'Admin::adminPagePost');
-$routes->get('/admin/edit-user', 'Admin::adminPageEdit');
 $routes->get('/admin/edit/(:num)', 'Admin::getEdit/$1');
 $routes->post('/admin/update/(:num)', 'Admin::adminUpdate/$1');
-$routes->get('/admin/getcategory', 'Admin::getCategory');
-
-
-
 $routes->get('/admin/delete/(:num)', 'Admin::adminDelete/$1');
 
 
@@ -59,9 +54,18 @@ $routes->get('/admin/delete/(:num)', 'Admin::adminDelete/$1');
 
 
 // page user
-$routes->get('/user', 'User::index');
-$routes->get('/user/github', 'User::github');
-$routes->get('/user/tentang', 'User::tentang');
+$routes->get('/user', 'UserNormal::index');
+$routes->get('/user/github', 'UserNormal::github');
+$routes->get('/user/tentang', 'UserNormal::tentang');
+$routes->get('/user/ajax-load-data', 'UserNormal::ajaxLoadData');
+$routes->get('/user/create-user', 'UserNormal::userPagePost');
+$routes->post('/user/post', 'UserNormal::userPost');
+$routes->get('/user/edit/(:num)', 'UserNormal::getEdit/$1');
+$routes->post('/user/update/(:num)', 'UserNormal::userUpdate/$1');
+$routes->get('/user/delete/(:num)', 'UserNormal::userDelete/$1');
+
+
+
 
 /*
  * --------------------------------------------------------------------

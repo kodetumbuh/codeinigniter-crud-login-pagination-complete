@@ -1,8 +1,8 @@
 <!-- load all modules css -->
-<?= $this->include('user/components/head') ?>
+<?= $this->include('user_normal/components/head') ?>
 
 <!-- load navbar -->
-<?= $this->include('user/components/navbar') ?>
+<?= $this->include('user_normal/components/navbar') ?>
 
 <div class="container">
 	<h1>Download di Github Sekarang</h1>
@@ -12,4 +12,4 @@
 
 
 <!-- load end body -->
-<?= $this->include('user/components/body') ?>
+<?= $this->include('user_normal/components/body') ?>
