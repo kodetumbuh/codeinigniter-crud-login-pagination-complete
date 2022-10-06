@@ -10,7 +10,7 @@ class User extends Migration
 	{
           //list field
 		$this->forge->addField([
-			'id'          => [
+			'id_number'          => [
 				'type'           => 'INT',
 				'constraint'     => 11,
 				'unsigned'       => TRUE,
@@ -26,7 +26,7 @@ class User extends Migration
 			],
 			'password' => [
 				'type'           => 'VARCHAR',
-				'constraint'     => '50'
+				'constraint'     => '200'
 			],
 			'name_level_user_id' => [
 				'type'           => 'INT',
@@ -35,9 +35,9 @@ class User extends Migration
 			],
 		]);
 
-		$this->forge->addKey('id', TRUE);
+		$this->forge->addKey('id_number', true);
+		$this->forge->addKey('name_level_user_id', true);
 
-		$this->forge->addForeignKey('name_level_user_id', 'level_users', 'id', 'SET NULL', 'SET NULL');
 		$this->forge->createTable('user');
 	}
 

@@ -8,7 +8,7 @@ $routes = Services::routes();
 // Load the system's routing file first, so that the app and ENVIRONMENT
 // can override as needed.
 if (is_file(SYSTEMPATH . 'Config/Routes.php')) {
-    require SYSTEMPATH . 'Config/Routes.php';
+	require SYSTEMPATH . 'Config/Routes.php';
 }
 
 /*
@@ -35,35 +35,45 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Login::index');
+
+
+// page login
+$routes->post('/login', 'Login::index');
+$routes->get('/login', 'Login::index');
+$routes->get('/not-login', 'Login::notLogin');
+$routes->get('/logout', 'Login::logout');
+$routes->post('/login/auth', 'Login::auth');
+
 
 
 // page admin
-$routes->get('/admin', 'Admin::index');
-$routes->get('/admin/github', 'Admin::github');
-$routes->get('/admin/tentang', 'Admin::tentang');
-$routes->get('/admin/ajax-load-data', 'Admin::ajaxLoadData');
-$routes->post('/admin/post', 'Admin::adminPost');
-$routes->get('/admin/create-user', 'Admin::adminPagePost');
-$routes->get('/admin/edit/(:num)', 'Admin::getEdit/$1');
-$routes->post('/admin/update/(:num)', 'Admin::adminUpdate/$1');
-$routes->get('/admin/delete/(:num)', 'Admin::adminDelete/$1');
-
-
-
-
+$routes->group('admin', ['filter' => 'auth'], static function ($routes) {
+	$routes->get('', 'Admin::index');
+	$routes->get('admin', 'Admin::admintest');
+	$routes->get('github', 'Admin::github');
+	$routes->get('tentang', 'Admin::tentang');
+	$routes->get('ajax-load-data', 'Admin::ajaxLoadData');
+	$routes->post('post', 'Admin::adminPost');
+	$routes->get('create-user', 'Admin::adminPagePost');
+	$routes->get('edit/(:num)', 'Admin::getEdit/$1');
+	$routes->post('update/(:num)', 'Admin::adminUpdate/$1');
+	$routes->get('delete/(:num)', 'Admin::adminDelete/$1');
+});
 
 // page user
-$routes->get('/user', 'UserNormal::index');
-$routes->get('/user/github', 'UserNormal::github');
-$routes->get('/user/tentang', 'UserNormal::tentang');
-$routes->get('/user/ajax-load-data', 'UserNormal::ajaxLoadData');
-$routes->get('/user/create-user', 'UserNormal::userPagePost');
-$routes->post('/user/post', 'UserNormal::userPost');
-$routes->get('/user/edit/(:num)', 'UserNormal::getEdit/$1');
-$routes->post('/user/update/(:num)', 'UserNormal::userUpdate/$1');
-$routes->get('/user/delete/(:num)', 'UserNormal::userDelete/$1');
-
+$routes->group('user', ['filter' => 'auth'], static function ($routes) {
+	$routes->get('', 'UserNormal::index');
+	$routes->get('user', 'UserNormal::usertest');
+	$routes->get('github', 'UserNormal::github');
+	$routes->get('tentang', 'UserNormal::tentang');
+	$routes->get('ajax-load-data', 'UserNormal::ajaxLoadData');
+	$routes->get('create-user', 'UserNormal::userPagePost');
+	$routes->post('post', 'UserNormal::userPost');
+	$routes->get('edit/(:num)', 'UserNormal::getEdit/$1');
+	$routes->post('update/(:num)', 'UserNormal::userUpdate/$1');
+	$routes->get('delete/(:num)', 'UserNormal::userDelete/$1');
+});
 
 
 
@@ -81,5 +91,5 @@ $routes->get('/user/delete/(:num)', 'UserNormal::userDelete/$1');
  * needing to reload it.
  */
 if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
-    require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
+	require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }

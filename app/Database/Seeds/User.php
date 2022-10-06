@@ -9,7 +9,7 @@ class User extends Seeder
 {
     public function run()
     {
-		for($i = 0; $i < 5000; $i++){
+		for($i = 0; $i < 5500; $i++){
 			$this->db->table("user")->insert($this->generateTestProducts());
 		}
     }

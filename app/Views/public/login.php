@@ -9,24 +9,26 @@
 					Login CRUD Sederhana
 				</div>
 				<div class="card-body">
-					<form>
-						<div class="form-group">
-							<label for="exampleInputEmail1">Alamat Email</label>
-							<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Masukan Email">
-							<small id="emailHelp" class="form-text text-muted">Kami Menjaga Kerahasiaan Data Anda.</small>
-						</div>
-						<div class="form-group">
-							<label for="exampleInputPassword1">Password</label>
-							<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-						</div>
-						<a href="/admin" class="btn btn-primary mt-2" role="button">Login</a>
-					</form>
-				</div>
+				<?php if(session()->getFlashdata('msg')):?>
+					<div class="alert alert-danger"><?= session()->getFlashdata('msg') ?></div>
+				<?php endif;?>
+				<form action="/login/auth" method="post">
+					<div class="mb-3">
+						<label for="InputForEmail" class="form-label">Email address</label>
+						<input type="email" name="email" class="form-control" id="InputForEmail" value="<?= set_value('email') ?>">
+					</div>
+					<div class="mb-3">
+						<label for="InputForPassword" class="form-label">Password</label>
+						<input type="password" name="password" class="form-control" id="InputForPassword">
+					</div>
+					<button type="submit" class="btn btn-primary">Login</button>
+				</form>
 			</div>
 		</div>
 	</div>
 </div>
 
 
+
 <!-- load end body -->
-<?= $this->include('user/components/body') ?>
+<?= $this->include('admin/components/body') ?>

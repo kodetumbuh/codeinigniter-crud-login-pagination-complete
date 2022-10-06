@@ -41,7 +41,7 @@
 								<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 									<a class="dropdown-item font-weight-bold" href="#">Robi Hamdani</a>
 									<a class="dropdown-item" href="crud.html">Dashboard</a>
-									<a class="dropdown-item" href="/">Log Out</a>
+									<a class="dropdown-item" href="/logout">Log Out</a>
 								</div>
 							</li>   
 						</ul>
