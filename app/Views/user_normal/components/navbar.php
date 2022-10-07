@@ -18,8 +18,7 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active">
-						<a class="nav-link" href="/user">Crud <span class="sr-only">(current)</span></a>
-						
+						<a class="nav-link" href="/user">Crud <span class="sr-only">(current)</span></a>	
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="/user/tentang">Tentang  </a>
@@ -39,9 +38,9 @@
 									<img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="30" height="30" class="rounded-circle">
 								</a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-									<a class="dropdown-item font-weight-bold" href="#">Robi Hamdani</a>
-									<a class="dropdown-item" href="crud.html">Dashboard</a>
-									<a class="dropdown-item" href="/">Log Out</a>
+									<a class="dropdown-item font-weight-bold" href="#">Username</a>
+									<a class="dropdown-item" href="/user">Dashboard</a>
+									<a class="dropdown-item" href="/logout">Log Out</a>
 								</div>
 							</li>   
 						</ul>

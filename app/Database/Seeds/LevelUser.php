@@ -10,12 +10,12 @@ class LevelUser extends Seeder
     {
         $data = [
             [
-                'name_level_user'  => 'user',
+                'name_level_user'  => 'admin',
             ],
             [
-                'name_level_user'  => 'admin',
+                'name_level_user'  => 'user',
             ]
         ];
-        $this->db->table('level_users')->insertBatch($data);
+        $this->db->table('level')->insertBatch($data);
     }
 }

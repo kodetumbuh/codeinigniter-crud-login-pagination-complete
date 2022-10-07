@@ -24,7 +24,7 @@ class LevelUser extends Migration
 
         $this->forge->addKey('id', TRUE);
 
-        $this->forge->createTable('level_users');
+        $this->forge->createTable('level');
     }
 
     public function down()

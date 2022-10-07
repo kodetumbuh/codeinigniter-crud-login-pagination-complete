@@ -38,6 +38,8 @@ class User extends Migration
 		$this->forge->addKey('id_number', true);
 		$this->forge->addKey('name_level_user_id', true);
 
+		$this->forge->addForeignKey('name_level_user_id', 'level', 'id', 'CASCADE', 'CASCADE');
+
 		$this->forge->createTable('user');
 	}
 

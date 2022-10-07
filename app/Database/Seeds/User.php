@@ -9,12 +9,28 @@ class User extends Seeder
 {
     public function run()
     {
+    	 $data = [
+            [
+                'username'  => 'admin',
+                'email'  => 'admin@gmail.com',
+                'password' => password_hash('123456', PASSWORD_DEFAULT),
+                'name_level_user_id'  => '1'
+            ],
+            [
+               	'username'  => 'user',
+                'email'  => 'user@gmail.com',
+                'password' => password_hash('123456', PASSWORD_DEFAULT),
+                'name_level_user_id'  => '2'
+            ]
+        ];
+        $this->db->table('user')->insertBatch($data);
+
 		for($i = 0; $i < 5500; $i++){
-			$this->db->table("user")->insert($this->generateTestProducts());
+			$this->db->table("user")->insert($this->generateUsers());
 		}
     }
  
-    public function generateTestProducts()
+    public function generateUsers()
     {
         $faker = Factory::create();
  

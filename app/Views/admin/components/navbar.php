@@ -39,8 +39,8 @@
 									<img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="30" height="30" class="rounded-circle">
 								</a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-									<a class="dropdown-item font-weight-bold" href="#">Robi Hamdani</a>
-									<a class="dropdown-item" href="crud.html">Dashboard</a>
+									<a class="dropdown-item font-weight-bold" href="#">Username</a>
+									<a class="dropdown-item" href="/admin">Dashboard</a>
 									<a class="dropdown-item" href="/logout">Log Out</a>
 								</div>
 							</li>   
