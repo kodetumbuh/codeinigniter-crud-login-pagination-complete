@@ -40,7 +40,7 @@
 		</div>
 		<div class="modal-footer">
 			<a class="btn btn-secondary btn-sm" href="/user" role="button">Keluar</a>
-			<button type="submit" class="btn btn-primary btn-sm">Tambah Data</button>
+			<button type="submit" onclick="this.form.submit();this.disabled = true;" class="btn btn-primary btn-sm">Tambah Data</button>
 		</form>
 	</div>
 </div>

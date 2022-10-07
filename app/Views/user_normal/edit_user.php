@@ -40,7 +40,7 @@
 			<input type="hidden" name="id_number" value="<?= $user->id_number;?>">
 			<div class="modal-footer">
 				<a class="btn btn-secondary btn-sm" href="/user" role="button">Keluar</a>
-				<button type="submit" class="btn btn-primary btn-sm">Edit Data</button>
+				<button type="submit" onclick="this.form.submit();this.disabled = true;" class="btn btn-primary btn-sm">Edit Data</button>
 			</form>
 		</div>
 	</div>
