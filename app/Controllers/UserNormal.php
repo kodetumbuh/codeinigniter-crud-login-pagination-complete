@@ -71,23 +71,49 @@ class UserNormal extends BaseController
 		->where('name_level_user', 'user')->get()->getResult();
 
 		return view('/user_normal/create_user', $data);
-		
-		
 	}
 
 
 	public function userPost()
 	{
 
-		$model = new User();
-		$data = [
-			'username' => $this->request->getVar('username'),
-			'email'  => $this->request->getVar('email'),
-			'password'  => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
-			'name_level_user_id'  => $this->request->getVar('name_level_user_id'),
-		];
-		$model->insert($data);
-		return $this->response->redirect(site_url('/user'));
+		if (!$this->validate([
+			'username' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Nama harus diisi'
+				]
+			],
+			'email' => [
+				'rules' => 'required|valid_email|is_unique[user.email]',
+				'errors' => [
+					'required' => 'Email harus diisi',
+					'valid_email' => 'Format email harus valid',
+					'is_unique' => 'Email sudah terdaftar gunakan email lain'
+				]
+			],
+			'password' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Password harus diisi'
+				]
+			],
+		])) {
+			session()->setFlashdata('msg', $this->validator->listErrors());
+			return redirect()->back()->withInput();
+		} else {
+			$model = new User();
+			$data = [
+				'username' => $this->request->getVar('username'),
+				'email'  => $this->request->getVar('email'),
+				'password'  => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
+				'name_level_user_id'  => $this->request->getVar('name_level_user_id'),
+			];
+			$model->insert($data);
+			return $this->response->redirect(site_url('/user'));
+		}
+
+		
 
 	}
 
@@ -104,16 +130,43 @@ class UserNormal extends BaseController
 
 	public function userUpdate(){
 
-		$item = new User();
-		$id = $this->request->getVar('id_number');
-		$data = [
-			'username' => $this->request->getVar('username'),
-			'email'  => $this->request->getVar('email'),
-			'password'  => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
-			'name_level_user_id'  => $this->request->getVar('name_level_user_id'),
-		];
-		$item->update($id, $data);
-		return $this->response->redirect(site_url('/user'));
+		if (!$this->validate([
+			'username' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Nama harus diisi'
+				]
+			],
+			'email' => [
+				'rules' => 'required|valid_email',
+				'errors' => [
+					'required' => 'Email harus diisi',
+					'valid_email' => 'Format email harus valid'
+				]
+			],
+			'password' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Password harus diisi'
+				]
+			],
+		])) {
+			session()->setFlashdata('msg', $this->validator->listErrors());
+			return redirect()->back()->withInput();
+		} else {
+			$model = new User();
+			$id = $this->request->getVar('id_number');
+			$data = [
+				'username' => $this->request->getVar('username'),
+				'email'  => $this->request->getVar('email'),
+				'password'  => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
+				'name_level_user_id'  => $this->request->getVar('name_level_user_id'),
+			];
+			$model->update($id, $data);
+			return $this->response->redirect(site_url('/user'));
+		}
+
+		
 		
 	}
 

@@ -12,19 +12,22 @@
 		</div>
 		<div class="card-body">
 			<h5 class="card-title">Formulir Tambah Data</h5>
+			<?php if(session()->getFlashdata('msg')):?>
+				<div class="alert alert-danger"><?= session()->getFlashdata('msg') ?></div>
+			<?php endif;?>
 			<form method="post" id="add_create" name="add_create" 
 			action="<?= site_url('/user/post') ?>">
 			<div class="form-group">
 				<label>Name</label>
-				<input type="text" name="username" class="form-control">
+				<input type="text" name="username" class="form-control" value="<?= old('username'); ?>">
 			</div>
 			<div class="form-group">
 				<label>Email</label>
-				<input type="email" name="email" class="form-control">
+				<input type="email" name="email" class="form-control" value="<?= old('email'); ?>">
 			</div>
 			<div class="form-group">
 				<label>Password</label>
-				<input type="password" name="password" class="form-control">
+				<input type="password" name="password" class="form-control" value="<?= old('password'); ?>">
 			</div>
 			<div class="form-group">
 					<label>Level</label>

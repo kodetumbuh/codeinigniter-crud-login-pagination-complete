@@ -19,6 +19,8 @@ class Admin extends BaseController
             echo '<h1> Akses Ditolak </h1>';
             exit;
         }
+
+        helper(['form', 'url']);
     }
 
 
@@ -86,15 +88,42 @@ class Admin extends BaseController
     public function adminPost()
     {
 
-        $model = new User();
-        $data = [
-            'username' => $this->request->getVar('username'),
-            'email'  => $this->request->getVar('email'),
-            'password'  => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
-            'name_level_user_id'  => $this->request->getVar('name_level_user_id'),
-        ];
-        $model->insert($data);
-        return $this->response->redirect(site_url('/admin'));
+        if (!$this->validate([
+            'username' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Nama harus diisi'
+                ]
+            ],
+            'email' => [
+                'rules' => 'required|valid_email',
+                'errors' => [
+                    'required' => 'Email harus diisi',
+                    'valid_email' => 'Format email harus valid'
+                ]
+            ],
+            'password' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Password harus diisi'
+                ]
+            ],
+        ])) {
+            session()->setFlashdata('msg', $this->validator->listErrors());
+            return redirect()->back()->withInput();
+        } else {
+            $model = new User();
+            $data = [
+                'username' => $this->request->getVar('username'),
+                'email'  => $this->request->getVar('email'),
+                'password'  => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
+                'name_level_user_id'  => $this->request->getVar('name_level_user_id'),
+            ];
+            $model->insert($data);
+            return $this->response->redirect(site_url('/admin'));
+        }
+
+        
 
 
     }
@@ -115,7 +144,31 @@ class Admin extends BaseController
 
     public function adminUpdate()
     {
-        $item = new User();
+      if (!$this->validate([
+        'username' => [
+            'rules' => 'required',
+            'errors' => [
+                'required' => 'Nama harus diisi'
+            ]
+        ],
+        'email' => [
+            'rules' => 'required|valid_email',
+            'errors' => [
+                'required' => 'Email harus diisi',
+                'valid_email' => 'Format email harus valid'
+            ]
+        ],
+        'password' => [
+            'rules' => 'required',
+            'errors' => [
+                'required' => 'Password harus diisi'
+            ]
+        ],
+    ])) {
+        session()->setFlashdata('msg', $this->validator->listErrors());
+        return redirect()->back()->withInput();
+    } else {
+        $model = new User();
         $id = $this->request->getVar('id_number');
         $data = [
             'username' => $this->request->getVar('username'),
@@ -123,39 +176,25 @@ class Admin extends BaseController
             'password'  => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
             'name_level_user_id'  => $this->request->getVar('name_level_user_id'),
         ];
-        $item->update($id, $data);
+        $model->update($id, $data);
         return $this->response->redirect(site_url('/admin'));
     }
+
     
-
-    public function getEdit($id_number)
-    {
-
-        $model = new User();
-        $data['user'] = $model->getWhere(['id_number' => $id_number])->getRow();
-        $data['level'] = $this->db->table('level')->select('id, name_level_user')->get()->getResult();
-
-
-        echo view('/admin/edit_user', $data);
-
-    }
-
-    public function getCategory()
-    {
-
-     $db      = \Config\Database::connect();
-     $builder = $db->table('level');
-     $query   = $builder->get();
-
-     foreach ($query->getResult() as $row) {
-        echo $row->id;
-        echo $row->name_level_user;
-    }
-
 }
 
 
+public function getEdit($id_number)
+{
 
+    $model = new User();
+    $data['user'] = $model->getWhere(['id_number' => $id_number])->getRow();
+    $data['level'] = $this->db->table('level')->select('id, name_level_user')->get()->getResult();
+
+
+    echo view('/admin/edit_user', $data);
+
+}
 
 
 }

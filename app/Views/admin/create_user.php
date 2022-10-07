@@ -12,6 +12,9 @@
 		</div>
 		<div class="card-body">
 			<h5 class="card-title">Formulir Tambah Data</h5>
+			<?php if(session()->getFlashdata('msg')):?>
+				<div class="alert alert-danger"><?= session()->getFlashdata('msg') ?></div>
+			<?php endif;?>
 			<form method="post" id="add_create" name="add_create" 
 			action="<?= site_url('/admin/post') ?>">
 			<div class="form-group">

@@ -12,6 +12,9 @@
 		</div>
 		<div class="card-body">
 			<h5 class="card-title">Formulir Mengubah Data</h5>
+			<?php if(session()->getFlashdata('msg')):?>
+				<div class="alert alert-danger"><?= session()->getFlashdata('msg') ?></div>
+			<?php endif;?>
 			<form method="post" form action="<?php echo base_url('admin/update/'. $user->id_number) ?>">
 				<div class="form-group">
 					<label>Name</label>
