@@ -14,7 +14,6 @@ class Login extends BaseController
 		return view('public/login');
 	}
 
-
 	public function auth()
 	{
 		$session = session();
@@ -51,13 +50,13 @@ class Login extends BaseController
 				}
 
 			}else{
-				$session->setFlashdata('msg', 'Wrong Password');
-				return redirect()->to('/login');
+			$session->setFlashdata('msg', 'Wrong Password');
+            return redirect()->back()->withInput();
 			}
 
 		}else{
 			$session->setFlashdata('msg', 'Email not Found');
-			return redirect()->to('/login');
+            return redirect()->back()->withInput();
 		}
 
 	}
