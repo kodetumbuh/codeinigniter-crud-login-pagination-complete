@@ -7,5 +7,6 @@
 	<link rel="stylesheet" href="<?php echo base_url('css/bootstrap.css'); ?>">
 	<link rel="stylesheet" href="<?php echo base_url('css/jquery.dataTables.min.css'); ?>">
 	<link rel="stylesheet" href="<?php echo base_url('css/all.min.css'); ?>">
+	<link rel="stylesheet" href="<?php echo base_url('css/style.css'); ?>">
 </head>
 <body>

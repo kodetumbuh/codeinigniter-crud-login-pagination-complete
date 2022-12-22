@@ -179,8 +179,6 @@ class Admin extends BaseController
         $model->update($id, $data);
         return $this->response->redirect(site_url('/admin'));
     }
-
-    
 }
 
 
